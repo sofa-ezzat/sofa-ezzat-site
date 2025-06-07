@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sofa EZzat</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+    }
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      margin: 80px auto 30px;
+      max-width: 400px;
+      border-radius: 20px;
+    }
+    input, button, select {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 12px;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+    }
+    button {
+      background-color: white;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.7);
+      padding: 10px;
+      font-size: 14px;
+    }
+    .popup, .service-window {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      color: black;
+      padding: 20px;
+      border-radius: 16px;
+      width: 80%;
+      max-width: 400px;
+      font-family: 'Poppins', sans-serif;
+      display: none;
+    }
+    .popup p, .service-window p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .popup button, .service-window button {
+      background-color: black;
+      color: white;
+      margin-top: 15px;
+    }
+    #timer {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="overlay" id="main-box">
+<h2>أهلاً بك في موقع <strong>Sofa EZzat</strong> لشحن مشاهدات ولايكات تيك توك!</h2>
+<input id="videoLink" placeholder="أدخل رابط فيديو التيك توك هنا" type="text"/>
+<button onclick="startCharging()">ابدأ الشحن</button>
+</div>
+<div class="popup" id="popup">
+<p>عذرا كلمه المرور خاطئه<br/>
+    يرجي تحويل مبلغ 250ج على رقم <strong>01220718448</strong> من خلال محفظه فودافون كاش<br/>
+    وبعد ذلك التوجه إلى مدير الموقع <strong>يوسف عزت</strong><br/>
+    ويمكنك التواصل معه على واتساب من خلال رقم <strong>01278817617</strong><br/><br/>
+<em>Thank you</em></p>
+<button onclick="closePopup()">إغلاق</button>
+</div>
+<div class="service-window" id="serviceWindow">
+<h3>أدخل الرابط مرة أخرى</h3>
+<input id="finalLink" placeholder="رابط الفيديو" type="text"/>
+<select id="serviceType">
+<option value="views">مشاهدات</option>
+<option value="likes">لايكات</option>
+</select>
+<button onclick="startService()">بدء الشحن</button>
+<div id="timer"></div>
+</div>
+<div class="footer">
+<strong>01278817617</strong><br/>
+    إذا واجهتك أي مشكلة أثناء الشحن، يُرجى التواصل معنا على هذا الرقم.<br/>
+    .Sofa EZzat. All rights reserved 2025 ©
+  </div>
+<script>
+    function startCharging() {
+      const password = prompt("من فضلك أدخل كلمة المرور للمتابعة:");
+      if (password === "yooussefezzat.7") {
+        document.getElementById("serviceWindow").style.display = "block";
+      } else {
+        document.getElementById("popup").style.display = "block";
+      }
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    function startService() {
+      const service = document.getElementById("serviceType").value;
+      const timerDiv = document.getElementById("timer");
+      let timeLeft = 7 * 60;
+      timerDiv.innerHTML = "جاري تجهيز " + (service === "views" ? "3000 مشاهدة..." : "600 لايك...");
+
+      const interval = setInterval(() => {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        timerDiv.innerHTML = `الوقت المتبقي: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        timeLeft--;
+
+        if (timeLeft < 0) {
+          clearInterval(interval);
+          timerDiv.innerHTML = "✅ تم إرسال " + (service === "views" ? "3000 مشاهدة" : "600 لايك") + " بنجاح!";
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
